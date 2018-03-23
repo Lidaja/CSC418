@@ -1,0 +1,16 @@
+Report - Liam Jackson
+In creating the penguin, I carefully followed each step instructed to by the handout. Step one was to design and model the penguin. For this, I used 3 recurring shapes. A cube, which I used for the head, beak, hands, and legs. A trapezoidal prism, which I used for the arms and body. And finally, a triangular prism, which I used for the feet. After modelling these, I carefully layed them out with scaling and translations to creat ehe general shape of the penguin, along with their colours of course.
+
+After creating the shapes for the penguin, I then arranged a system to draw them differently depending on the rendering style. Using conditionals, I can call the function with different properties depending on which rendering style has been selected with the radio buttons.
+
+I next needed to add the matte and shiny metallic textures with lighting. Using documentation read online, I learned to create the lights, it's simply a few function declarations and assignments, and to enable some modifications. I added some spinners to the GUI to allow for me to alter the position of the light in terms of it's height, and it's rotation around a circle of an editable radius.
+
+After that, I need to add normals to the shapes. Going into the draw functions, I can just add normals before each vertex. This is simple for the polygons that are aligned with an axis, but the polygons on an angle require a bit more thought, but I think I managed to approximate them.
+
+After creating the normals, I can then check if the matte or shiny rendering style is selected. If either are, I can change the material properties of the shapes before I draw them. I can add a specular, diffuse, and ambient property of the colour I desire for it. And if the rendering style is metalic, I can add a shiny property.
+
+I then had to go in and edit the joints to allow for transformations from the sliders. For each DOF, I had to grab the value from the slider, and set up the shape so the transformation was done on where I want the joint to be, then translate it back so it looks proper. After lengthy amounts of trial and error, I do believe for the most part the DOF are working correctly. It is worth noting, I intentionally have the hands scale along with the arms.
+
+Finally, I need to alter the program to allow for animations via keyframes. As far as I know, this was simple as long as I followed the todo instructions properly. Assuming I did, it was only a couple lines of manipulating data structres and variables to create the system to perform keyframe animation and interpolation.
+
+And that concludes my work on this assignment. While I found it rather difficult and time consuming, I did enjoy what I learned and the experience I gained in OpenGL.

@@ -1,0 +1,261 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{subcaption}
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[]{algorithm2e}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassTime): \hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Perl, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.pl}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Assignment\ \#1} % Assignment title
+\newcommand{\hmwkDueDate}{Tuesday,\ March\ 8,\ 2016} % Due date
+\newcommand{\hmwkClass}{CSC418} % Course/class
+\newcommand{\hmwkClassTime}{L0101} % Class/lecture time
+\newcommand{\hmwkAuthorName}{Liam Jackson} % Your name
+\newcommand{\hmwkAuthorCDF}{g4jackso} % Your name
+\newcommand{\hmwkAuthorSN}{1000691281} % Your name
+\newcommand{\forconda}{$i=floor(n/2)$ \KwTo $size(image Columns + floor(n/2)$}
+\newcommand{\forcondb}{$j=floor(n/2)$ \KwTo $size(image Rows + floor(n/2)$}
+\newcommand{\forcondc}{$u=0$ \KwTo $n$}
+\newcommand{\forcondd}{$v=0$ \KwTo $n$}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+%\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+\clearpage
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+a) A unit vector perpendicular to $t$ and $c-e_m$ will be the cross product of the two divided by the norm of $t$ and $c-e_m$. So $\vec{d} = \dfrac{t \times (c-e_m)}{|t \times c-(e_m)|}$\\
+b)$e_L = e_m - \dfrac{s}{2}\cdot d, e_R = e_m+\dfrac{s}{2}\cdot d$\\
+c)For the right eye, we use $e_R$ as e, and our gaze vector will be $\vec{g_R} = c-e_R$. So then $\vec{w_R} = -\vec{g_R} = -(c-e_R)$ Then $\vec{u_R} = \dfrac{\vec{t} \times \vec{w_R}}{||\vec{t} \times \vec{w_R}||} = \dfrac{\vec{t} \times -(c-e_R)}{||\vec{t} \times -(c-e_R)||}$ Then $ \vec{v_R} = \vec{w_R} \times \vec{u_R} =  -(c-e_R) \times \dfrac{\vec{t} \times -(c-e_R)}{||\vec{t} \times -(c-e_R)||}$. So the coordinate frame for the right eye is $(\vec{u_R},\vec{v_R},\vec{w_R}) = (\dfrac{\vec{t} \times -(c-e_R)}{||\vec{t} \times -(c-e_R)||}, -(c-e_R) \times \dfrac{\vec{t} \times -(c-e_R)}{||\vec{t} \times -(c-e_R)||}, -(c-e_R))$ and the coordinate frame for the left eye is $(\vec{u_L},\vec{v_L},\vec{w_L}) = (\dfrac{\vec{t} \times -(c-e_L)}{||\vec{t} \times -(c-e_L)||}, -(c-e_L) \times \dfrac{\vec{t} \times -(c-e_L)}{||\vec{t} \times -(c-e_L)||}, -(c-e_L))$\\
+d) $ p_R = e_L + p_L^1 \vec{u_R} + p_L^2 \vec{v_R} + p_L^3 \vec{w_R} = [\vec{u_R} \vec{v_R} \vec{w_R}]p_L + e_L.$ So we can then write $M_{LR} = \begin{bmatrix}
+       u_R^1 & v_R^1 & w_R^1 & e_1 \\[0.3em]
+       u_R^2 & v_R^2 & w_R^2 & e_2 \\[0.3em]
+       u_R^3 & v_R^3 & w_R^3 & e_3 \\[0.3em]
+       0 & 0 & 0 & 1\\
+     \end{bmatrix}$\\
+e) To determine whether a polygon face with normal n is to be culled, we put it through the culling criterion. From camera $e_R$, if $(c-e_R)\cdot \vec{n} > 0$, then we know it is not facing the camera, so we cull it, otherwise it stays. From camera $e_L$, if $(c-e_L)\cdot \vec{n} > 0$, then we know it's direction is not to the camera, so we cull it, otherwise it stays.
+\end{homeworkProblem}
+\begin{homeworkProblem}
+Projecting p with focal length -f, we get $p' = (\dfrac{-f}{p_z}p_x,\dfrac{-f}{p_z}p_y,-f)\\
+q' = (\dfrac{-f}{q_z}q_x,\dfrac{-f}{q_z}q_y,-f)\\
+ m = (\dfrac{p_x+q_x}{2},\dfrac{p_y+q_y}{2},\dfrac{p_z+q_z}{2})$\\ So then $m' = (\dfrac{-2f}{p_z+q_z}\cdot\dfrac{p_x+q_x}{2},\dfrac{-2f}{p_z+q_z}\cdot\dfrac{p_y+q_y}{2},\dfrac{-2f}{p_z+q_z}\cdot\dfrac{p_z+q_z}{2}) = (\dfrac{-f(p_x+q_x)}{p_z+q_z},\dfrac{-f(p_y+q_y)}{p_z+q_z},-f)\\
+0.5(p'+q') =  (\dfrac{-f}{p_z}p_x,\dfrac{-f}{p_z}p_y,-f) + (\dfrac{-f}{q_z}q_x,\dfrac{-f}{q_z}q_y,-f) = 0.5(\dfrac{-2f(p_x+q_x)}{p_z+q_z},\dfrac{-2f(p_y+q_y)}{p_z+q_z},-2f) \\= (\dfrac{-f(p_x+q_x)}{p_z+q_z},\dfrac{-f(p_y+q_y)}{p_z+q_z},-f) = m'$, so yes, they are mathematically equivalent when doing perspective projection.\\
+
+If we do orthographic projection, $p' = (\alpha p_x,\alpha p_z,\alpha p_z)\\
+q' = (\alpha q_x,\alpha q_z,\alpha q_z)\\
+m = (\dfrac{p_x+q_x}{2},\dfrac{p_y+q_y}{2},\dfrac{p_z+q_z}{2})\\
+m' = (\alpha\dfrac{p_x+q_x}{2},\alpha\dfrac{p_y+q_y}{2},\alpha\dfrac{p_z+q_z}{2})\\
+0.5(p'+q') = 0.5(\alpha p_x + \alpha q_x,\alpha p_y + \alpha q_y,\alpha p_z + \alpha q_z) = (\alpha \dfrac{p_x + q_x}{2}, \alpha \dfrac{p_y + q_y}{2},\alpha \dfrac{p_z + q_z}{2}) = m'$, so yes, even orthographic projection preserves these ratios.
+\end{homeworkProblem}
+\begin{homeworkProblem}
+a) If the surface is $p(t) = <0,y(t),z(t)>$ where $y(t) = a\sqrt{t} + bsin(t)$ and $z(t) = ct$, then if we revolve the surface around the z axis, the parametric equation will be $p(u,v) = <y(u)\cdot cos(v),y(u)\cdot sin(v),z(u)>\\ = <(a\sqrt{u} + bsin(u))\cdot cos(v),(a\sqrt{u} + bsin(u))\cdot sin(v), cu>, u\in [0,2\pi), v\in [0,2\pi)$ \\
+b)We can represent a tangent plane with a normal vector and a point. To get the normal vector we do \\$p_u(u,v) = <(\dfrac{a}{2\sqrt{u}}+bcos(u))\cdot cos(v), (\dfrac{a}{2\sqrt{u}}+bcos(u))\cdot sin(v), c> \\p_v(u,v) = <-(a\sqrt{u} + bsin(u))\cdot sin(v),(a\sqrt{u} + bsin(u))\cdot cos(v), 0>\\
+$The normal vector will be \\$ n = p_u(u,v) \times p_v(u,v) = <-c(a\sqrt{u} + bsin(u))\cdot cos(v),-c(a\sqrt{u} + bsin(u))\cdot sin(v), ((\dfrac{a}{2\sqrt{u}}+bcos(u))\cdot cos(v)) \cdot ((a\sqrt{u} + bsin(u))\cdot cos(v)) - ((\dfrac{a}{2\sqrt{u}}+bcos(u))\cdot sin(v)) \cdot (-(a\sqrt{u} + bsin(u))\cdot sin(v))>$\\
+The point will be $x_0 = (a\sqrt{u} + bsin(u))\cdot cos(v), y_0 = (a\sqrt{u} + bsin(u))\cdot sin(v), z_0 = cu$
+Then the tangent plane can be written as $n_x(x-x_0) + n_y(y-y_0) + n_z(z-z_0) = 0$\\
+c) As we determine in part b, the normal vector is \\$ n = p_u(u,v) \times p_v(u,v) = <-c(a\sqrt{u} + bsin(u))\cdot cos(v),-c(a\sqrt{u} + bsin(u))\cdot sin(v), ((\dfrac{a}{2\sqrt{u}}+bcos(u))\cdot cos(v)) \cdot ((a\sqrt{u} + bsin(u))\cdot cos(v)) - ((\dfrac{a}{2\sqrt{u}}+bcos(u))\cdot sin(v)) \cdot (-(a\sqrt{u} + bsin(u))\cdot sin(v))>$
+\end{homeworkProblem}
+\begin{homeworkProblem}
+a) I did my best to recreate the diagram for purposed of determining which shapes were inside and outside
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Q41.png}
+\end{figure}
+Using a as the root node, we can split the other shapes into the inside and outside groups
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Q42.png}
+\end{figure}
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Tree1.png}
+\end{figure}
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Q43.png}
+\end{figure}
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Tree2.png}
+\end{figure}
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Q44.png}
+\end{figure}
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=0.4\textwidth]{Tree3.png}
+\end{figure}
+\clearpage
+b) For $e_1$, $e_1$ is inside a, so we draw everything outside a. $e_1$ is outside g, so we draw everything inside g. This means we draw f$_b$ first. Then we draw g. $e_1$ is outisde e, so we draw everything inside e. There is nothing inside e, so we draw e, then f$_a$. Then we draw a. $e_1$ is outside h, so we draw everything inside h. So we draw b, then h. $e_1$ is outside c, so we draw everything inside c. There is nothing inside c, so we draw c, then d. So the order is (f$_b$, g, e, f$_a$, a, b, h, c, d).\\
+For $e_2$, $e_2$ is outside a, so we draw everything inside a first. $e_2$ is inside h, so we draw everything outside h first. $e_2$ is outside c, so we draw everything inside c first. There is nothing inside c, so we draw c, then d, then h, then b, then a. $e_2$ is inside g, so we draw everything outside g first. $e_2$ is outside e, so we draw everything inside e first. There is nothing inside e, so we then draw e, then f$_a$, then g, then f$_b$.
+So the order is then (c, d, h, b, e, f$_a$, g, f$_b$)
+\end{homeworkProblem}
+%----------------------------------------------------------------------------------------
+
+\end{document}

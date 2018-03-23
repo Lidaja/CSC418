@@ -1,0 +1,11 @@
+Player 2 (Closest to Camera):
+J - Move Left
+K - Swing
+L - Move Right
+
+Player 1(Furthest from Camera):
+A - Move Left
+S - Swing
+D - Move Right
+
+Hit the ball back and forth. First to 10 points wins.
